@@ -156,13 +156,6 @@ import { useUserStore } from "src/stores/user-store";
 
 const sales_column = [
   {
-    name: "name",
-    label: "Crop",
-    field: "product_name",
-    sortable: true,
-    align: "left",
-  },
-  {
     name: "address",
     label: "Location",
     field: (e) => helpers.trunc(e.address, 30),

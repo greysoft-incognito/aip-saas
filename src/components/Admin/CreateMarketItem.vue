@@ -1,6 +1,6 @@
 <template>
   <CustomDialog
-    :title="`${item.id ? 'Update' : 'Create'} Marketplace Item: ${form.name}`"
+    :title="`${item.id ? 'Update' : 'Create'} Marketplace Item: ${form.type}`"
     @before-hide="reset"
     v-model="toggle"
   >
@@ -12,18 +12,6 @@
           accept=".jpg,.png,.jpeg"
           width="200px"
           :preview="item.image_url"
-        />
-      </div>
-      <div class="col-12">
-        <q-input
-          filled
-          lazy-rules
-          hide-bottom-space
-          type="text"
-          v-model="form.name"
-          label="Name"
-          :error="!!errors.name"
-          :error-message="errors.name"
         />
       </div>
       <div class="col-6">
@@ -225,7 +213,7 @@ const props = defineProps({
   data: {
     type: Object,
     default: () => ({
-      name: "",
+      name: "Ginger",
       grade: "A",
       price: 0.0,
       active: 1,
@@ -302,7 +290,7 @@ const {
   {
     initialForm: {
       image: null,
-      name: item.value.product_name,
+      name: item.value.product_name ?? "Ginger",
       type: item.value.type,
       price: item.value.price,
       grade: item.value.grade,
@@ -340,7 +328,7 @@ watchEffect(() => {
 watch(item, (i) => {
   form.value = {
     image: null,
-    name: i.product_name,
+    name: i.product_name ?? "Ginger",
     price: i.price,
     type: i.type,
     grade: i.grade,

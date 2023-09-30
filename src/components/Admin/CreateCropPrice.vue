@@ -16,7 +16,7 @@
           hide-bottom-space
           type="text"
           v-model="form.item"
-          label="Item"
+          label="Grade"
           :error="!!errors.item"
           :error-message="errors.item"
         />

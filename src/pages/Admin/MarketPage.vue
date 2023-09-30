@@ -185,13 +185,6 @@ const sales_column = [
     classes: "q-pa-none important",
   },
   {
-    name: "name",
-    label: "Crop",
-    field: "product_name",
-    sortable: true,
-    align: "left",
-  },
-  {
     name: "quantity",
     label: "Quantity",
     field: "qty",

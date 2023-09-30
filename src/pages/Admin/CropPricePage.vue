@@ -131,7 +131,7 @@ const createCropRef = ref();
 const sales_column = [
   {
     name: "item",
-    label: "Item",
+    label: "Grade",
     field: "item",
     sortable: true,
     align: "left",

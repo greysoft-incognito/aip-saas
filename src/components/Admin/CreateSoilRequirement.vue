@@ -14,7 +14,7 @@
           hide-bottom-space
           type="text"
           v-model="form.crop"
-          label="Crop"
+          label="Grade"
           :error="!!errors.crop"
           :error-message="errors.crop"
         />
