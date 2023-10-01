@@ -35,7 +35,7 @@
               hide-bottom-space
               type="text"
               v-model="form.address"
-              label="Address/Farm Address"
+              label="Farm/Warehouse/Store/Factory Address"
               :error="!!errors.address"
               :error-message="errors.address"
             />
@@ -244,6 +244,34 @@ const userTypes = [
   {
     value: "researcher",
     label: "Researcher",
+  },
+  {
+    value: "herbicide",
+    label: "Herbicide Supplier/Manufacturer",
+  },
+  {
+    value: "fertiliser",
+    label: "Fertiliser Supplier/Manufacturer",
+  },
+  {
+    value: "washer",
+    label: "Washer",
+  },
+  {
+    value: "slicer",
+    label: "Slicer",
+  },
+  {
+    value: "dryer",
+    label: "Dryer",
+  },
+  {
+    value: "tractor",
+    label: "Tractor Supplier/Manufacturer",
+  },
+  {
+    value: "bagging",
+    label: "Into Bagging",
   },
 ];
 

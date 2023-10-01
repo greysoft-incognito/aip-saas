@@ -89,7 +89,7 @@ const props = defineProps({
    */
   title: {
     type: [String, Boolean],
-    default: "PalmIP",
+    default: "Ginger IP",
   },
   /**
    * @description Stick dialog to one of the sides (top, right, bottom or left) Default value: standard

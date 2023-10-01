@@ -4,7 +4,7 @@
       <TitleSection
         separator
         icon="fa-solid fa-wheat-awn"
-        title="Crop Price Management"
+        title="Pricing Management"
       >
         <template #button>
           <q-btn
@@ -59,6 +59,24 @@
           </q-item>
         </q-list>
       </q-card-section>
+
+      <q-card-section>
+        <q-btn-toggle
+          v-model="quantity_unit"
+          class="custom-toggle"
+          no-caps
+          rounded
+          unelevated
+          toggle-color="primary"
+          color="white"
+          text-color="primary"
+          :options="[
+            { label: 'Bags', value: '' },
+            { label: 'Tons', value: '_tons' },
+          ]"
+        />
+      </q-card-section>
+
       <q-card-section class="q-pa-none q-ma-none">
         <q-table
           row-key="id"
@@ -88,6 +106,32 @@
               />
             </q-td>
           </template>
+
+          <template v-slot:body-cell-item="props">
+            <q-td :props="props" class="text-left">
+              <q-chip
+                color="primary"
+                class="text-white text-capitalize"
+                :label="props.value"
+              ></q-chip>
+            </q-td>
+          </template>
+
+          <template v-slot:body-cell-price="props">
+            <q-td :props="props" class="text-left">
+              {{ helpers.money(props.row["price" + quantity_unit] || 0) }}/{{
+                quantity_unit == "_tons" ? "Ton" : "Bag"
+              }}
+            </q-td>
+          </template>
+
+          <template v-slot:body-cell-quantity="props">
+            <q-td :props="props" class="text-left">
+              {{ props.row["quantity" + quantity_unit] }}
+              {{ quantity_unit == "_tons" ? "Tons" : "Bags" }}
+            </q-td>
+          </template>
+
           <template v-slot:no-data>
             <div class="full-width row flex-center text-negative q-gutter-sm">
               <q-icon size="2em" name="sentiment_dissatisfied" />
@@ -125,10 +169,10 @@ import TitleSection from "src/components/TitleSection.vue";
 import CreateCropPrice from "src/components/Admin/CreateCropPrice.vue";
 import ContentRemover from "src/components/Admin/ContentRemover.vue";
 import helpers from "src/plugins/helpers";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const createCropRef = ref();
-const sales_column = [
+const sales_column = computed(() => [
   {
     name: "item",
     label: "Grade",
@@ -139,18 +183,17 @@ const sales_column = [
   {
     name: "price",
     label: "Price",
-    field: (e) =>
-      `${helpers.money(e.price || 0)}/${helpers.singularize(e.unit)}`,
+    field: "price" + quantity_unit.value,
     sortable: true,
     align: "left",
     classes: "text-bold",
   },
   {
-    name: "available_qty",
+    name: "quantity",
     label: "Available Qty",
-    field: (e) => `${parseInt(e.available_qty).toLocaleString()} ${e.unit}`,
-    sortable: true,
-    align: "left",
+    field: "quantity",
+    sortable: false,
+    align: "right",
   },
   {
     name: "actions",
@@ -159,9 +202,10 @@ const sales_column = [
     sortable: false,
     align: "right",
   },
-];
+]);
 
 const search = ref("");
+const quantity_unit = ref("");
 const searching = ref(false);
 const pagination = ref({
   sortBy: "desc",
@@ -224,3 +268,8 @@ const onRequest = (props) => {
   loadItems();
 };
 </script>
+
+<style lang="sass" scoped>
+.custom-toggle
+  border: 1px solid #027be3
+</style>

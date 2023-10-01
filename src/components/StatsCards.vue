@@ -3,7 +3,7 @@
     <q-card-section class="q-pa-none">
       <div class="row q-col-gutter-sm justify-start">
         <div
-          class="col-md-3 col-sm-12 col-xs-12"
+          class="col-md-4 col-sm-6 col-xs-12"
           :key="i"
           v-for="(item, i) in items"
           @click="onClick(item)"
@@ -30,9 +30,16 @@
               <q-icon :name="item.icon" color="white" size="lg"></q-icon>
               <q-tooltip v-if="item.tooltip">{{ item.tooltip }}</q-tooltip>
             </q-item-section>
-            <q-item-section class="q-pa-md q-ml-none text-white">
-              <q-item-label class="text-white text-h6 text-weight-bolder">
-                {{ parseInt(item.count).toLocaleString("us") }}{{ item.sup }}
+            <q-item-section class="q-pa-sm q-ml-none text-white">
+              <q-item-label
+                class="text-white text-h6 text-weight-bolder"
+                :style="{ fontSize: item.count_size }"
+              >
+                {{
+                  !isNaN(item.count)
+                    ? parseInt(item.count).toLocaleString("us")
+                    : item.count
+                }}{{ item.sup }}
               </q-item-label>
               <q-item-label>{{ item.label }}</q-item-label>
             </q-item-section>

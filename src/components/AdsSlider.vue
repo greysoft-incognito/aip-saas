@@ -7,12 +7,13 @@
     :autoplay-delay="5000"
     :autoplay-pause-on-mouse-enter="true"
     :autoplay-disable-on-interaction="true"
+    v-if="(slides || data || []).length"
   >
-    <swiper-slide :key="slide.id" v-for="slide in data">
+    <swiper-slide :key="slide.id" v-for="slide in slides || data">
       <div
         class="relative full-width q-pa-md"
         :style="{
-          height: '400px',
+          height: '200px',
           backgroundSize: 'cover',
           backgroundImage: `url(${slide.image_url})`,
           backgroundRepeat: 'no-repeat',
@@ -22,13 +23,18 @@
         <div
           class="absolute-top-left full-width column justify-center items-center q-px-md full-height"
         >
-          <q-spinner
-            size="xl"
-            color="primary"
-            class="q-ma-sm"
-            style="opacity: 0.5"
+          <div
+            class="absolute flex justify-center items-center"
             v-if="!slide.loaded"
-          />
+            style="top: 0; bottom: 0; left: 0; right: 0"
+          >
+            <q-spinner
+              size="xl"
+              color="primary"
+              class="q-ma-sm"
+              style="opacity: 0.5"
+            />
+          </div>
           <h3
             class="text-h3 text-weight-bold text-center text-grey-4 q-my-xs"
             v-html="helpers.nlText(slide.title, 5)"
@@ -39,6 +45,15 @@
           <h6 class="text-h6 text-white text-weight-bold text-center q-my-xs">
             {{ slide.line2 }}
           </h6>
+          <div class="full-width flex justify-center" v-if="slide.line3">
+            <q-btn
+              color="primary"
+              label="Visit Advertiser"
+              :to="slide.line3"
+              :href="slide.line3.includes('http') ? slide.line3 : undefined"
+              :target="slide.line3.includes('http') ? '_blank' : undefined"
+            />
+          </div>
           <img
             :src="slide.image_url"
             style="height: 0px; width: 0px"
@@ -55,8 +70,17 @@
 import { alova, useRequest } from "src/boot/alova";
 import helpers from "src/plugins/helpers";
 
+const props = defineProps({
+  slides: {
+    type: Array,
+  },
+});
+
 const { data } = useRequest(
   alova.Get(`slides`, {
+    params: {
+      ads: true,
+    },
     localCache: {
       mode: "placeholder",
       expire: 3.6e6,
@@ -65,6 +89,7 @@ const { data } = useRequest(
   }),
   {
     initialData: [],
+    immediate: !props.slides,
   },
 );
 </script>

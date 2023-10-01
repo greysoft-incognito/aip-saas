@@ -1,6 +1,6 @@
 <template>
   <CustomDialog
-    :title="`${slide.id ? 'Update' : 'Create'} Slide: ${form.title}`"
+    :title="`${request.id ? 'Update' : 'Create'} Advert Request: ${form.title}`"
     @before-hide="reset"
     v-model="toggle"
   >
@@ -8,10 +8,10 @@
       <div class="col-12 flex justify-center">
         <TUploader
           v-model="image"
-          label="SLide Image"
+          label="Advert Image"
           accept=".jpg,.png,.jpeg"
           width="200px"
-          :preview="slide.image_url"
+          :preview="request.image_url"
         />
       </div>
       <div class="col-12">
@@ -56,76 +56,43 @@
           lazy-rules
           hide-bottom-space
           type="text"
+          label="Link"
           v-model="form.line3"
-          :label="advert ? 'Link' : 'Line 3'"
           :error="!!errors.line3"
           :error-message="errors.line3"
-        />
-      </div>
-      <div class="col-12" v-if="advert">
-        <q-input
-          filled
-          lazy-rules
-          hide-bottom-space
-          label="Expiry Date"
-          v-model="form.expires_at"
-          :error="!!errors.expires_at"
-          :error-message="errors.expires_at"
         >
-          <template v-slot:prepend>
-            <q-icon name="event" class="cursor-pointer">
-              <q-popup-proxy
-                cover
-                class="no-shadow"
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-date
-                  flat
-                  minimal
-                  bordered
-                  v-model="form.expires_at"
-                  mask="YYYY-MM-DD HH:mm"
-                >
-                </q-date>
-              </q-popup-proxy>
-            </q-icon>
-          </template>
-
-          <template v-slot:append>
-            <q-icon name="access_time" class="cursor-pointer">
-              <q-popup-proxy
-                cover
-                class="no-shadow"
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-time
-                  flat
-                  bordered
-                  format24h
-                  v-model="form.expires_at"
-                  mask="YYYY-MM-DD HH:mm"
-                >
-                </q-time>
-              </q-popup-proxy>
-            </q-icon>
+          <template #append>
+            <q-btn
+              round
+              color="primary"
+              icon="person"
+              @click="
+                form.line3 = $router.resolve({
+                  name: 'profile',
+                  params: { user: user.username },
+                }).href
+              "
+            />
           </template>
         </q-input>
       </div>
       <div class="col-12">
-        <q-checkbox
-          v-model="form.active"
-          label="Active"
-          :true-value="1"
-          :false-value="0"
+        <q-input
+          filled
+          lazy-rules
+          hide-bottom-space
+          label="Duration (Hours)"
+          type="number"
+          v-model="form.duration"
+          :error="!!errors.duration"
+          :error-message="errors.duration"
         />
       </div>
     </q-form>
     <template #actions>
       <q-btn
         color="primary"
-        :label="`${slide.id ? 'Update' : 'Create'} Slide`"
+        :label="`${request.id ? 'Update' : 'Create'} Request`"
         :loading="loading"
         @click="create"
       />
@@ -137,16 +104,13 @@
 import { axios } from "src/boot/alova";
 import { useForm } from "@alova/scene-vue";
 import { computed, ref, watch, watchEffect } from "vue";
-import CustomDialog from "../CustomDialog.vue";
+import CustomDialog from "./CustomDialog.vue";
 import helpers from "src/plugins/helpers";
-import TUploader from "../TUploader.vue";
-import { date } from "quasar";
+import TUploader from "./TUploader.vue";
+import { useUserStore } from "src/stores/user-store";
 
 const emit = defineEmits(["update:modelValue", "update:item", "created"]);
 const props = defineProps({
-  advert: {
-    type: Boolean,
-  },
   modelValue: {
     type: Boolean,
   },
@@ -154,18 +118,18 @@ const props = defineProps({
     type: Object,
     default: () => ({
       title: "",
-      active: 1,
     }),
   },
 });
 
+const user = computed(() => useUserStore().user);
 const image = ref(null);
 const errors = computed(() => error.value?.errors || {});
 const toggle = ref(props.modelValue);
-const slide = ref(props.data);
+const request = ref(props.data);
 
 const open = (i) => {
-  slide.value = i || props.data;
+  request.value = i || props.data;
   toggle.value = true;
 };
 
@@ -179,11 +143,13 @@ const {
 } = useForm(
   (fd) => {
     const a = axios.Post(
-      `admin/slides${slide.value.id ? "/" + slide.value.id : ""}`,
+      `account/advert/requests${
+        request.value.id ? "/" + request.value.id : ""
+      }`,
       {
         ...fd,
         image: image.value,
-        _method: slide.value.id ? "PUT" : "POST",
+        _method: request.value.id ? "PUT" : "POST",
       },
       {
         enableUpload: true,
@@ -200,14 +166,11 @@ const {
   {
     initialForm: {
       image: null,
-      title: slide.value.title,
-      line1: slide.value.line1,
-      line2: slide.value.line2,
-      line3: slide.value.line3,
-      active: slide.value.active ? 1 : 0,
-      expires_at: slide.value.expires_at
-        ? date.formatDate(slide.value.expires_at, "YYYY-MM-DD HH:mm")
-        : null,
+      title: request.value.title,
+      line1: request.value.line1,
+      line2: request.value.line2,
+      line3: request.value.line3,
+      duration: request.value.duration || 24,
     },
     initialData: {},
     store: true,
@@ -218,29 +181,26 @@ const {
 onSuccess(({ data }) => {
   // Notify the user
   helpers.notify(data.message, "success");
-  if (slide.value.id) {
+  if (request.value.id) {
     emit("update:item", data.data);
   } else {
     emit("created", data.data);
   }
-  slide.value = data.data;
+  request.value = data.data;
 });
 
 watchEffect(() => {
   emit("update:modelValue", toggle.value);
 });
 
-watch(slide, (i) => {
+watch(request, (i) => {
   form.value = {
     image: null,
     title: i.title,
     line1: i.line1,
     line2: i.line2,
     line3: i.line3,
-    active: i.active ? 1 : 0,
-    expires_at: i.expires_at
-      ? date.formatDate(i.expires_at, "YYYY-MM-DD HH:mm")
-      : null,
+    duration: i.duration || 24,
   };
 });
 defineExpose({ open });

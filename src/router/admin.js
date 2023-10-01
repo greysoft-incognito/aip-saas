@@ -21,6 +21,16 @@ export default [
         component: () => import('pages/Admin/SlidesPage.vue')
       },
       {
+        path: 'advertisements',
+        name: 'admin.adverts',
+        component: () => import('pages/Admin/AdvertsPage.vue')
+      },
+      {
+        path: 'advert/requests',
+        name: 'admin.advert.requests',
+        component: () => import('pages/Admin/AdvertsRequestsPage.vue')
+      },
+      {
         path: 'events',
         name: 'admin.events',
         component: () => import('pages/Admin/EventsPage.vue')

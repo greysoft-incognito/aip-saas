@@ -14,20 +14,8 @@
           :preview="item.image_url"
         />
       </div>
-      <div class="col-6">
-        <q-input
-          filled
-          lazy-rules
-          hide-bottom-space
-          type="text"
-          v-model="form.type"
-          label="Type"
-          :error="!!errors.type"
-          :error-message="errors.type"
-        />
-      </div>
-      <div class="col-6">
-        <q-input
+      <div class="col-12">
+        <q-select
           filled
           lazy-rules
           hide-bottom-space
@@ -36,6 +24,7 @@
           label="Grade"
           :error="!!errors.grade"
           :error-message="errors.grade"
+          :options="['A', 'B', 'C']"
         />
       </div>
       <div class="col-6">
@@ -44,11 +33,10 @@
           lazy-rules
           hide-bottom-space
           type="text"
-          label="Quantity Unit"
-          hint="E.g: Bags, KG, Tons"
-          v-model="form.quantity_unit"
-          :error="!!errors.quantity_unit"
-          :error-message="errors.quantity_unit"
+          v-model="form.quantity_tons"
+          :label="`Available Quantity (Tons)`"
+          :error="!!errors.quantity_tons"
+          :error-message="errors.quantity_tons"
         />
       </div>
       <div class="col-6">
@@ -58,23 +46,9 @@
           hide-bottom-space
           type="text"
           v-model="form.quantity"
-          :label="`Available Quantity (${form.quantity_unit})`"
+          :label="`Available Quantity (Bags)`"
           :error="!!errors.quantity"
           :error-message="errors.quantity"
-        />
-      </div>
-      <div class="col-12">
-        <q-input
-          filled
-          lazy-rules
-          hide-bottom-space
-          type="text"
-          v-model="form.price"
-          :label="`Price per ${helpers.singularize(form.quantity_unit)} (${
-            boot.settings.currency_symbol
-          })`"
-          :error="!!errors.price"
-          :error-message="errors.price"
         />
       </div>
 
@@ -198,7 +172,6 @@ import { computed, ref, watch, watchEffect } from "vue";
 import CustomDialog from "../CustomDialog.vue";
 import helpers from "src/plugins/helpers";
 import TUploader from "../TUploader.vue";
-import { useBootstrapStore } from "src/stores/bootstrap";
 import LocationPicker from "../maps/LocationPicker.vue";
 import LocalePicker from "../LocalePicker.vue";
 
@@ -214,17 +187,18 @@ const props = defineProps({
     type: Object,
     default: () => ({
       name: "Ginger",
+      type: "Ginger",
       grade: "A",
       price: 0.0,
       active: 1,
       approved: 1,
       quantity: 1,
+      quantity_tons: 1,
       quantity_unit: "KG",
     }),
   },
 });
 
-const boot = useBootstrapStore();
 const image = ref(null);
 const errors = computed(() => error.value?.errors || {});
 const toggle = ref(props.modelValue);
@@ -291,8 +265,8 @@ const {
     initialForm: {
       image: null,
       name: item.value.product_name ?? "Ginger",
-      type: item.value.type,
-      price: item.value.price,
+      type: item.value.type ?? "Ginger",
+      price: item.value.price ?? 0.0,
       grade: item.value.grade,
       location: item.value.location,
       address: item.value.address,
@@ -300,6 +274,7 @@ const {
       state: item.value.state,
       city: item.value.city,
       quantity: item.value.quantity,
+      quantity_tons: item.value.quantity_tons,
       quantity_unit: item.value.quantity_unit,
       active: item.value.active ? 1 : 0,
       approved: item.value.approved ? 1 : 0,
@@ -329,8 +304,8 @@ watch(item, (i) => {
   form.value = {
     image: null,
     name: i.product_name ?? "Ginger",
-    price: i.price,
-    type: i.type,
+    price: i.price ?? 0.0,
+    type: i.type ?? "Ginger",
     grade: i.grade,
     location: i.location,
     address: i.address,
@@ -338,6 +313,7 @@ watch(item, (i) => {
     state: i.state,
     city: i.city,
     quantity: i.quantity,
+    quantity_tons: i.quantity_tons,
     quantity_unit: i.quantity_unit,
     active: i.active ? 1 : 0,
     approved: i.approved ? 1 : 0,

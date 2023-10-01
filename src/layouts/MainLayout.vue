@@ -124,7 +124,7 @@
                   class="GNL__drawer-footer-link"
                   href="javascript:void(0)"
                   aria-label="About"
-                  >About PalmIP</a
+                  >About Ginger IP</a
                 >
               </div>
             </div>
@@ -161,7 +161,7 @@ const navLinks = computed(() => {
   const links = {
     user: [
       { to: { name: "user.dashboard" }, icon: "web", text: "Dashboard" },
-      { to: { name: "market" }, icon: "store", text: "Market Place" },
+      { to: { name: "market" }, icon: "store", text: "Marketplace" },
       {
         to: { name: "events.calendar" },
         icon: "event",
@@ -170,7 +170,12 @@ const navLinks = computed(() => {
       {
         to: { name: "crop.price" },
         icon: "fa-solid fa-wheat-awn",
-        text: "Crop Price",
+        text: "Pricing",
+      },
+      {
+        to: { name: "user.adverts" },
+        icon: "fas fa-rectangle-ad",
+        text: "Advert Requests",
       },
       {
         to: { name: "admin.dashboard" },
@@ -185,16 +190,26 @@ const navLinks = computed(() => {
         icon: "dashboard",
         text: "Dashboard",
       },
-      { to: { name: "admin.market" }, icon: "store", text: "Market Place" },
+      { to: { name: "admin.market" }, icon: "store", text: "Marketplace" },
       {
         to: { name: "admin.crop.price" },
         icon: "fa-solid fa-wheat-awn",
-        text: "Crop Price",
+        text: "Pricing",
       },
       {
         to: { name: "admin.slides" },
         icon: "slideshow",
         text: "Slides",
+      },
+      {
+        to: { name: "admin.adverts" },
+        icon: "fas fa-rectangle-ad",
+        text: "Advertisements",
+      },
+      {
+        to: { name: "admin.advert.requests" },
+        icon: "fas fa-rectangle-ad",
+        text: "Advert Requests",
       },
       {
         to: { name: "admin.events" },

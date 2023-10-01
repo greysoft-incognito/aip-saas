@@ -13,7 +13,7 @@
                 ref="searchRef"
                 color="white"
                 class="rounded search-input"
-                placeholder="Search by reference, handler name or owner name"
+                placeholder="Search for user"
                 v-model="search"
                 @keyup.enter="searching = true"
               >

@@ -31,6 +31,11 @@ export default [
         component: () => import('pages/User/EventCalendarPage.vue')
       },
       {
+        path: 'advert/requests',
+        name: 'user.adverts',
+        component: () => import('pages/User/AdvertsPage.vue')
+      },
+      {
         path: 'crop/price',
         name: 'crop.price',
         component: () => import('pages/User/CropPricePage.vue')

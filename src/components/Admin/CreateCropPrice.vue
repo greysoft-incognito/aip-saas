@@ -1,6 +1,6 @@
 <template>
   <CustomDialog
-    :title="`${price.id ? 'Update' : 'Create'} Crop Price: ${form.item}`"
+    :title="`${price.id ? 'Update' : 'Create'} Pricing: ${form.item}`"
     @before-hide="reset"
     v-model="toggle"
   >
@@ -10,7 +10,7 @@
       @submit="1"
     >
       <div class="col-12">
-        <q-input
+        <q-select
           filled
           lazy-rules
           hide-bottom-space
@@ -19,6 +19,7 @@
           label="Grade"
           :error="!!errors.item"
           :error-message="errors.item"
+          :options="['A', 'B', 'C']"
         />
       </div>
       <div class="col-12">
@@ -26,38 +27,25 @@
           filled
           lazy-rules
           hide-bottom-space
-          type="text"
-          label="Unit"
-          hint="E.g: Bags, KG, Tons"
-          v-model="form.unit"
-          :error="!!errors.unit"
-          :error-message="errors.unit"
-        />
-      </div>
-      <div class="col-12">
-        <q-input
-          filled
-          lazy-rules
-          hide-bottom-space
-          type="text"
-          v-model="form.available_qty"
-          :label="`Available Quantity (${form.unit})`"
-          :error="!!errors.available_qty"
-          :error-message="errors.available_qty"
-        />
-      </div>
-      <div class="col-12">
-        <q-input
-          filled
-          lazy-rules
-          hide-bottom-space
-          type="text"
+          type="number"
+          step="0.1"
           v-model="form.price"
-          :label="`Price per ${helpers.singularize(form.unit)} (${
-            boot.settings.currency_symbol
-          })`"
+          :label="`Price per bag (${boot.settings.currency_symbol})`"
           :error="!!errors.price"
           :error-message="errors.price"
+        />
+      </div>
+      <div class="col-12">
+        <q-input
+          filled
+          lazy-rules
+          hide-bottom-space
+          type="number"
+          step="0.1"
+          v-model="form.price_tons"
+          :label="`Price per ton (${boot.settings.currency_symbol})`"
+          :error="!!errors.price_tons"
+          :error-message="errors.price_tons"
         />
       </div>
       <div class="col-12">
@@ -92,7 +80,7 @@
     <template #actions>
       <q-btn
         color="primary"
-        :label="`${price.id ? 'Update' : 'Create'} Crop Price`"
+        :label="`${price.id ? 'Update' : 'Create'} Pricing`"
         :loading="loading"
         @click="create"
       />
@@ -122,6 +110,7 @@ const props = defineProps({
       icon: "info",
       unit: "Bags",
       price: 0,
+      price_tons: 0,
       available_qty: 0,
     }),
   },
@@ -164,6 +153,7 @@ const {
       icon: price.value.icon || "info",
       unit: price.value.unit,
       price: price.value.price,
+      price_tons: price.value.price_tons || 0,
       available_qty: price.value.available_qty,
     },
     initialData: {},
@@ -193,6 +183,7 @@ watch(price, (i) => {
     icon: i.icon || "info",
     unit: i.unit,
     price: i.price,
+    price_tons: i.price_tons || 0,
     available_qty: i.available_qty,
   };
 });

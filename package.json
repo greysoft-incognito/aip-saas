@@ -1,8 +1,8 @@
 {
-  "name": "palm-ip",
+  "name": "ginger-ip",
   "version": "0.0.1",
-  "description": "Palm Valley Nigeria Limited Agricultural Innovation Platfrom for Rice and Maize Produce.",
-  "productName": "Palm IP",
+  "description": "Agrolog Ginger Innovation Platfrom for Ginger Produce.",
+  "productName": "Ginger IP",
   "author": "Isah Raphael <33344810+realralphg@users.noreply.github.com>",
   "private": true,
   "scripts": {

@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-card class="q-mt-sm no-shadow" bordered>
-      <TitleSection separator icon="store" title="Market Place Management">
+      <TitleSection separator icon="store" title="Marketplace Management">
         <template #button>
           <q-btn
             rounded
@@ -22,7 +22,7 @@
                 ref="searchRef"
                 color="white"
                 class="rounded search-input"
-                placeholder="Search by reference, handler name or owner name"
+                placeholder="Search by grade, or seller name"
                 v-model="search"
                 @keyup.enter="searching = true"
               >
@@ -55,6 +55,24 @@
           </q-item>
         </q-list>
       </q-card-section>
+
+      <q-card-section>
+        <q-btn-toggle
+          v-model="quantity_unit"
+          class="custom-toggle"
+          no-caps
+          rounded
+          unelevated
+          toggle-color="primary"
+          color="white"
+          text-color="primary"
+          :options="[
+            { label: 'Bags', value: '' },
+            { label: 'Tons', value: '_tons' },
+          ]"
+        />
+      </q-card-section>
+
       <q-card-section class="q-pa-none q-ma-none">
         <q-table
           row-key="id"
@@ -107,6 +125,12 @@
                   </q-item-label>
                 </q-item-section>
               </q-item>
+            </q-td>
+          </template>
+          <template v-slot:body-cell-quantity="props">
+            <q-td :props="props" class="text-left">
+              {{ props.row["quantity" + quantity_unit] }}
+              {{ quantity_unit == "_tons" ? "Tons" : "Bags" }}
             </q-td>
           </template>
           <template v-slot:body-cell-grade="props">
@@ -185,27 +209,19 @@ const sales_column = [
     classes: "q-pa-none important",
   },
   {
-    name: "quantity",
-    label: "Quantity",
-    field: "qty",
-    sortable: true,
-    align: "right",
-    classes: "text-bold",
-  },
-  {
-    name: "type",
-    label: "Type",
-    field: "type",
-    sortable: true,
-    align: "left",
-    classes: "text-bold",
-  },
-  {
     name: "grade",
     label: "Grade",
     field: "grade",
     sortable: true,
     align: "left",
+    classes: "text-bold",
+  },
+  {
+    name: "quantity",
+    label: "Quantity",
+    field: "qty",
+    sortable: true,
+    align: "right",
     classes: "text-bold",
   },
   {
@@ -219,6 +235,7 @@ const sales_column = [
 
 const search = ref("");
 const searching = ref(false);
+const quantity_unit = ref("");
 const createMarketItemRef = ref(null);
 const pagination = ref({
   sortBy: "desc",
@@ -281,3 +298,7 @@ const onRequest = (props) => {
   loadItems();
 };
 </script>
+<style lang="sass" scoped>
+.custom-toggle
+  border: 1px solid #027be3
+</style>
