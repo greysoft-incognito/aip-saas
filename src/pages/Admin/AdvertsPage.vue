@@ -131,7 +131,7 @@ const sales_column = [
   },
   {
     name: "line3",
-    label: "Line 3",
+    label: "Link",
     field: (e) => helpers.trunc(e.line3 || "", 20),
     sortable: true,
     align: "left",
