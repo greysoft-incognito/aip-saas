@@ -88,6 +88,14 @@
           :error-message="errors.duration"
         />
       </div>
+      <div class="col-12">
+        <q-checkbox
+          v-model="form.hide_texts"
+          label="Hide Texts"
+          :true-value="1"
+          :false-value="0"
+        />
+      </div>
     </q-form>
     <template #actions>
       <q-btn
@@ -118,6 +126,7 @@ const props = defineProps({
     type: Object,
     default: () => ({
       title: "",
+      hide_texts: 0,
     }),
   },
 });
@@ -171,6 +180,7 @@ const {
       line2: request.value.line2,
       line3: request.value.line3,
       duration: request.value.duration || 24,
+      hide_texts: request.value.hide_texts ? 1 : 0,
     },
     initialData: {},
     store: true,
@@ -201,6 +211,7 @@ watch(request, (i) => {
     line2: i.line2,
     line3: i.line3,
     duration: i.duration || 24,
+    hide_texts: i.hide_texts ? 1 : 0,
   };
 });
 defineExpose({ open });

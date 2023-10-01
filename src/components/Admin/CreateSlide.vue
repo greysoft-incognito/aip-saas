@@ -113,10 +113,17 @@
           </template>
         </q-input>
       </div>
-      <div class="col-12">
+      <div class="col-12 q-gutter-sm">
         <q-checkbox
           v-model="form.active"
           label="Active"
+          :true-value="1"
+          :false-value="0"
+        />
+
+        <q-checkbox
+          v-model="form.hide_texts"
+          label="Hide Texts"
           :true-value="1"
           :false-value="0"
         />
@@ -155,6 +162,7 @@ const props = defineProps({
     default: () => ({
       title: "",
       active: 1,
+      hide_texts: 0,
     }),
   },
 });
@@ -205,6 +213,7 @@ const {
       line2: slide.value.line2,
       line3: slide.value.line3,
       active: slide.value.active ? 1 : 0,
+      hide_texts: slide.value.hide_texts ? 1 : 0,
       expires_at: slide.value.expires_at
         ? date.formatDate(slide.value.expires_at, "YYYY-MM-DD HH:mm")
         : null,
@@ -238,6 +247,7 @@ watch(slide, (i) => {
     line2: i.line2,
     line3: i.line3,
     active: i.active ? 1 : 0,
+    hide_texts: i.hide_texts ? 1 : 0,
     expires_at: i.expires_at
       ? date.formatDate(i.expires_at, "YYYY-MM-DD HH:mm")
       : null,
