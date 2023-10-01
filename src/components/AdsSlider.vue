@@ -4,7 +4,7 @@
     :css-mode="true"
     :navigation="true"
     :centered-slides="true"
-    :autoplay-delay="500000"
+    :autoplay-delay="5000"
     :autoplay-pause-on-mouse-enter="true"
     :autoplay-disable-on-interaction="true"
     v-if="(slides || data || []).length"
@@ -13,7 +13,7 @@
       <div
         class="relative full-width q-pa-md q-ma-sm"
         :style="{
-          height: '200px',
+          height: '180px',
           zIndex: 2,
           backgroundSize: 'contain',
           backgroundImage: `url(${slide.image_url})`,
@@ -127,6 +127,10 @@ swiper-container {
     .swiper-button-prev {
       background-color: red;
     }
+  }
+  &::part(wrapper) {
+    height: 265px;
+    overflow-y: hidden;
   }
   &::part(button-next),
   &::part(button-prev) {
