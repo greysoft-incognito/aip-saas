@@ -4,7 +4,6 @@
       <TitleSection separator icon="slideshow" title="Slides Management">
         <template #button>
           <q-btn
-            rounded
             label="Create New"
             color="primary"
             @click="$refs.createSlideRef.open()"

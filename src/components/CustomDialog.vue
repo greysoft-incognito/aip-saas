@@ -25,10 +25,21 @@
         { [cardClass]: !!cardClass },
       ]"
     >
-      <q-toolbar v-if="title !== false">
-        <q-avatar>
-          <img src="~/assets/logo-vertical.svg" />
-        </q-avatar>
+      <q-toolbar class="q-pa-sm" v-if="title !== false">
+        <div
+          style="
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 50%;
+          "
+          class="bg-green q-mr-sm row items-center justify-center"
+        >
+          <img
+            style="width: 40px; height: 40px; object-fit: contain"
+            src="~/assets/agrolog2.png"
+          />
+        </div>
 
         <q-toolbar-title>
           <slot name="title">
@@ -38,7 +49,7 @@
         <q-btn flat round dense icon="close" v-close-popup v-if="closable" />
       </q-toolbar>
 
-      <q-separator v-if="!!title" />
+      <q-separator class="q-mb-md" v-if="!!title" />
 
       <slot name="top"></slot>
 

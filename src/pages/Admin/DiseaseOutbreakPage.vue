@@ -8,7 +8,6 @@
       >
         <template #button>
           <q-btn
-            rounded
             label="Create New"
             color="primary"
             @click="$refs.createDiseaseOutbreakRef.open()"

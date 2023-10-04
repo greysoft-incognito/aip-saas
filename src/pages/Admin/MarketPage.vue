@@ -4,7 +4,6 @@
       <TitleSection separator icon="store" title="Marketplace Management">
         <template #button>
           <q-btn
-            rounded
             label="Create New"
             color="primary"
             @click="$refs.createMarketItemRef.open()"
@@ -145,7 +144,7 @@
           <template v-slot:body-cell-actions="props">
             <q-td :props="props" class="text-left">
               <q-btn
-                rounded
+                round
                 color="primary"
                 label="Edit"
                 @click="$refs.createMarketItemRef.open(props.row)"
