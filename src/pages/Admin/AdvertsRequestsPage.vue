@@ -8,7 +8,6 @@
       >
         <template #button>
           <q-btn
-            rounded
             label="Create New"
             color="primary"
             @click="$refs.createAdRef.open()"
@@ -73,7 +72,7 @@
               />
               <q-btn
                 round
-                color="blue"
+                color="primary"
                 icon="preview"
                 @click="preview(props.row)"
               />

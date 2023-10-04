@@ -4,7 +4,6 @@
       <TitleSection separator icon="grass" title="Soil Requirements Management">
         <template #button>
           <q-btn
-            rounded
             label="Create New"
             color="primary"
             @click="$refs.createSoilRequirementRef.open()"

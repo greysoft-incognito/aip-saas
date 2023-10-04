@@ -9,7 +9,9 @@
       </div>
     </div>
     <div class="q-pa-md bg-white q-mt-md">
-      <h5 class="text-center text-weight-bold q-my-xs">
+      <h5
+        class="text-center column justify-center items-center text-weight-bold q-my-xs"
+      >
         Announcements
         <q-btn
           rounded

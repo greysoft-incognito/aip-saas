@@ -4,7 +4,6 @@
       <TitleSection separator icon="event" title="Events Management">
         <template #button>
           <q-btn
-            rounded
             label="Create New"
             color="primary"
             @click="$refs.createEventRef.open()"
