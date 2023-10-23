@@ -14,14 +14,14 @@
           object-fit: contain;
           border-radius: 50%;
         "
-        class="bg-green q-mr-sm row items-center justify-center"
+        class="bg-white q-mr-sm row items-center justify-center"
       >
         <img
           style="width: 40px; height: 40px; object-fit: contain"
-          src="~/assets/agrolog2.png"
+          src="~/assets/logo2.svg"
         />
       </div>
-      <h1 class="logo">Agrolog <span></span></h1>
+      <h1 class="logo">Agrobays <span></span></h1>
     </router-link>
   </q-header>
   <q-page class="flex bg-image flex-center">
@@ -38,11 +38,16 @@
               object-fit: contain;
               border-radius: 50%;
             "
-            class="bg-green q-mr-sm row items-center justify-center"
+            class="bg-white q-mr-sm row items-center justify-center"
           >
             <img
-              style="width: 60px; height: 60px; object-fit: contain"
-              src="~/assets/agrolog2.png"
+              style="
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+                border-radius: 0;
+              "
+              src="~/assets/logo2.svg"
             />
           </div>
         </q-avatar>
