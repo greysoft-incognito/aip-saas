@@ -214,7 +214,7 @@ const stats = computed(() => [
       color: "blue-grey",
       label: `Grade ${e.item} (${helpers.money(
         e.price || 0,
-      )}/bag | ${helpers.money(e.price_ton || 0)}/ton)`,
+      )}/bag | ${helpers.money(e.price_tons || 0)}/ton)`,
       count: `${parseInt(e.quantity || 0).toLocaleString(
         "us",
       )} Bags | ${parseInt(e.quantity_tons || 0).toLocaleString("us")} Tons`,
