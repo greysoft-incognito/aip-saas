@@ -13,11 +13,16 @@
               object-fit: contain;
               border-radius: 50%;
             "
-            class="bg-green q-mr-sm row items-center justify-center"
+            class="bg-white q-mr-sm row items-center justify-center"
           >
             <img
-              style="width: 60px; height: 60px; object-fit: contain"
-              src="~/assets/agrolog2.png"
+              style="
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+                border-radius: 0;
+              "
+              src="~/assets/logo2.svg"
             />
           </div>
         </q-avatar>

@@ -33,11 +33,11 @@
             object-fit: contain;
             border-radius: 50%;
           "
-          class="bg-green q-mr-sm row items-center justify-center"
+          class="bg-white q-mr-sm row items-center justify-center"
         >
           <img
             style="width: 40px; height: 40px; object-fit: contain"
-            src="~/assets/agrolog2.png"
+            src="~/assets/logo2.svg"
           />
         </div>
 

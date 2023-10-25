@@ -20,19 +20,19 @@
           <RouterLink class="row items-center no-wrap" :to="{ name: 'home' }">
             <div
               style="
-                width: 50px;
-                height: 50px;
+                width: 130px;
+                height: 90px;
                 object-fit: contain;
                 border-radius: 50%;
               "
-              class="bg-green q-mr-sm row items-center justify-center"
+              class="bg-white q-mr-sm row items-center justify-center"
             >
               <img
-                style="width: 40px; height: 40px; object-fit: contain"
-                src="~/assets/agrolog2.png"
+                style="width: 120px; height: 80px; object-fit: contain"
+                src="~/assets/newlogo.svg"
               />
             </div>
-            <h1 class="logo">Agrolog <span></span></h1>
+            <!-- <h1 class="logo">Agrobays <span></span></h1> -->
           </RouterLink>
         </q-toolbar-title>
 
