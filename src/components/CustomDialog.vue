@@ -37,7 +37,7 @@
         >
           <img
             style="width: 40px; height: 40px; object-fit: contain"
-            src="~/assets/logo2.svg"
+            src="~/assets/logoicon.svg"
           />
         </div>
 

@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh LpR lfr" class="bg-grey-1">
     <q-header elevated class="bg-white text-grey-8" height-hint="64">
-      <q-toolbar class="GNL__toolbar">
+      <q-toolbar style="overflow: hidden" class="GNL__toolbar">
         <q-btn
           flat
           dense
@@ -20,16 +20,16 @@
           <RouterLink class="row items-center no-wrap" :to="{ name: 'home' }">
             <div
               style="
-                width: 130px;
-                height: 90px;
+                width: 180px;
+                height: 150px;
                 object-fit: contain;
                 border-radius: 50%;
               "
               class="bg-white q-mr-sm row items-center justify-center"
             >
               <img
-                style="width: 120px; height: 80px; object-fit: contain"
-                src="~/assets/newlogo.svg"
+                style="width: 170px; height: 130px; object-fit: contain"
+                src="~/assets/logobig.svg"
               />
             </div>
             <!-- <h1 class="logo">Agrobays <span></span></h1> -->

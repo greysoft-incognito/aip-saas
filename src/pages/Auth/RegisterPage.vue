@@ -1,5 +1,5 @@
 <template>
-  <q-header elevated class="bg-white q-pa-sm">
+  <q-header style="height: 80px" elevated class="bg-white q-pa-sm">
     <router-link
       to="/"
       flat
@@ -9,7 +9,7 @@
     >
       <div
         style="
-          width: 50px;
+          width: 180px;
           height: 50px;
           object-fit: contain;
           border-radius: 50%;
@@ -17,11 +17,10 @@
         class="bg-white q-mr-sm row items-center justify-center"
       >
         <img
-          style="width: 40px; height: 40px; object-fit: contain"
-          src="~/assets/logo2.svg"
+          style="width: 170px; height: 60px; object-fit: contain"
+          src="~/assets/logobig.svg"
         />
       </div>
-      <h1 class="logo">Agrobays <span></span></h1>
     </router-link>
   </q-header>
   <q-page class="flex bg-image flex-center">
@@ -42,12 +41,12 @@
           >
             <img
               style="
-                width: 50px;
-                height: 50px;
+                width: 70px;
+                height: 70px;
                 object-fit: contain;
                 border-radius: 0;
               "
-              src="~/assets/logo2.svg"
+              src="~/assets/logoicon.svg"
             />
           </div>
         </q-avatar>
