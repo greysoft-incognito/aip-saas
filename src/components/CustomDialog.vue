@@ -28,15 +28,15 @@
       <q-toolbar class="q-pa-sm" v-if="title !== false">
         <div
           style="
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             object-fit: contain;
             border-radius: 50%;
           "
           class="bg-white q-mr-sm row items-center justify-center"
         >
           <img
-            style="width: 40px; height: 40px; object-fit: contain"
+            style="width: 60px; height: 60px; object-fit: contain"
             src="~/assets/logoicon.svg"
           />
         </div>
