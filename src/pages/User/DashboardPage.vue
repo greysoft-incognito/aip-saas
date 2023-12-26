@@ -1,7 +1,7 @@
 <template>
   <q-page>
-    <div class="q-pa-md">
-      <div class="row q-col-gutter-md q-my-sm justify-center">
+    <div class="q-pb-md q-pt-none">
+      <div class="row q-col-gutter-md q-mb-sm justify-center">
         <div class="col-12">
           <AdsSlider />
         </div>

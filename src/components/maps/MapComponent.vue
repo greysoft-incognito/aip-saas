@@ -196,4 +196,3 @@ onMounted(() => {
   }
 }
 </style>
-src/assets/q-spinner.js
