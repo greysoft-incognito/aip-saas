@@ -6,9 +6,15 @@
     card-section-height="550px"
   >
     <template #title>
-      <span class="text-weight-bold">Users</span>
-      |
-      <span class="text-capitalize">{{ helpers.pluralize(type) }}</span>
+      <slot name="title">
+        <span class="text-weight-bold">
+          {{ group ? group.titleCase() : "People" }}
+        </span>
+        |
+        <span class="text-capitalize">
+          {{ title || helpers.pluralize(type) }}
+        </span>
+      </slot>
     </template>
 
     <template #top>
@@ -21,7 +27,8 @@
       <q-card-section v-if="!users?.length && !loading">
         <div class="full-width column items-center text-info q-gutter-sm">
           <q-icon size="2em" name="sentiment_satisfied" />
-          There are no {{ helpers.pluralize(type) }} for now!
+          There are no
+          {{ (title || helpers.pluralize(type)).toLowerCase() }} for now!
         </div>
       </q-card-section>
     </template>
@@ -66,6 +73,8 @@ const props = defineProps({
     type: String,
     default: "farmer",
   },
+  group: String,
+  title: String,
 });
 
 const {
@@ -81,6 +90,7 @@ const {
         page,
         limit,
         type: props.type,
+        group: props.group ? props.group : undefined,
       },
       localCache: {
         mode: "placeholder",

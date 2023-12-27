@@ -1,7 +1,12 @@
 <template>
   <q-page>
     <q-card class="q-mt-sm no-shadow" bordered>
-      <TitleSection separator icon="grass" title="Soil Requirements Management">
+      <TitleSection
+        separator
+        class="q-pa-none"
+        icon="grass"
+        title="Soil Requirements Management"
+      >
         <template #button>
           <q-btn
             label="Create New"
@@ -79,12 +84,14 @@
             <q-td :props="props" class="text-left">
               <q-btn
                 rounded
+                size="sm"
                 color="primary"
                 label="Edit"
                 @click="$refs.createSoilRequirementRef.open(props.row)"
               />
               <ContentRemover
                 round
+                size="sm"
                 class="q-ml-sm"
                 base-url="admin/soil/requirements"
                 :id="props.value"

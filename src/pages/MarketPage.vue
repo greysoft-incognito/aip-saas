@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-card class="q-mt-sm no-shadow" bordered>
-      <TitleSection separator title="Marketplace">
+      <TitleSection separator class="q-py-none" title="Marketplace">
         <template #button>
           <q-btn
             rounded
@@ -261,5 +261,5 @@ const onRequest = (props) => {
 
 <style lang="sass" scoped>
 .custom-toggle
-  border: 1px solid #027be3
+  border: 1px solid $primary
 </style>

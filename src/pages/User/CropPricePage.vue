@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-card class="q-mt-sm no-shadow" bordered>
-      <TitleSection separator title="Pricing" />
+      <TitleSection separator class="q-pa-none" title="Pricing" />
 
       <q-card-section>
         <q-list class="rounded-here text-grey-5 bg-white">
@@ -217,5 +217,5 @@ const onRequest = (props) => {
 
 <style lang="sass" scoped>
 .custom-toggle
-  border: 1px solid #027be3
+  border: 1px solid $primary
 </style>

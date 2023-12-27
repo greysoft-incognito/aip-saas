@@ -176,12 +176,21 @@ function toggleLeftDrawer() {
 const navLinks = computed(() => {
   const links = {
     user: [
-      { to: { name: "user.dashboard" }, icon: "web", text: "Dashboard" },
-      { to: { name: "market" }, icon: "store", text: "Marketplace" },
+      {
+        to: { name: "user.dashboard" },
+        icon: "fas fa-newspaper",
+        text: "Dashboard",
+      },
+      { to: { name: "market" }, icon: "fas fa-shop", text: "Marketplace" },
       {
         to: { name: "events.calendar" },
-        icon: "event",
+        icon: "fas fa-calendar-day",
         text: "Event Calendar",
+      },
+      {
+        to: { name: "agronomy" },
+        icon: "fas fa-building-wheat",
+        text: "Agronomy",
       },
       {
         to: { name: "crop.price" },

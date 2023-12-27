@@ -1,7 +1,12 @@
 <template>
   <q-page>
     <q-card class="q-mt-sm no-shadow" bordered>
-      <TitleSection separator icon="groups" title="Users Management" />
+      <TitleSection
+        separator
+        class="q-pa-none"
+        icon="groups"
+        title="Users Management"
+      />
 
       <q-card-section>
         <q-list class="rounded-here text-grey-5 bg-white">
@@ -59,7 +64,10 @@
         >
           <template v-slot:body-cell-name="props">
             <q-td :props="props">
-              <q-item class="q-pl-none">
+              <q-item
+                class="q-py-none full-height"
+                :to="{ name: 'profile', params: { user: props.row.username } }"
+              >
                 <q-item-section avatar>
                   <q-avatar>
                     <img :src="props.row.avatar" />
@@ -78,11 +86,16 @@
               </q-item>
             </q-td>
           </template>
+          <template v-slot:body-cell-type="props">
+            <q-td :props="props" class="text-left">
+              {{ helpers.singularize(peopleTitles[props.value]) }}
+            </q-td>
+          </template>
           <template v-slot:body-cell-role="props">
             <q-td :props="props" class="text-left">
               <q-chip
-                class="text-white text-capitalize"
-                :color="props.value == 'admin' ? 'red' : 'primary'"
+                class="text-white text-capitalize q-ma-none"
+                :color="props.value == 'admin' ? 'red' : 'info'"
                 :label="props.value"
               ></q-chip>
             </q-td>
@@ -90,22 +103,28 @@
           <template v-slot:body-cell-actions="props">
             <q-td :props="props" class="text-left">
               <div class="full-width flex justify-end">
-                <q-btn
-                  rounded
-                  color="primary"
-                  label="Edit"
-                  @click="$refs.createUserRef.open(props.row)"
-                />
-                <ContentRemover
-                  round
-                  class="q-ml-sm"
-                  base-url="admin/users"
-                  confirmation="Are you sure you want to delete this user?"
-                  :id="props.value"
-                  :list="users"
-                  v-if="props.row.id !== user.id"
-                  @deleted="(e, l) => (users = l)"
-                />
+                <div>
+                  <q-btn
+                    rounded
+                    size="sm"
+                    color="primary"
+                    label="Edit"
+                    @click="$refs.createUserRef.open(props.row)"
+                  />
+                </div>
+                <div>
+                  <ContentRemover
+                    round
+                    size="sm"
+                    class="q-ml-sm"
+                    base-url="admin/users"
+                    confirmation="Are you sure you want to delete this user?"
+                    :id="props.value"
+                    :list="users"
+                    v-if="props.row.id !== user.id"
+                    @deleted="(e, l) => (users = l)"
+                  />
+                </div>
                 <div class="q-pl-xl" v-if="props.row.id === user.id"></div>
               </div>
             </q-td>
@@ -149,6 +168,7 @@ import helpers from "src/plugins/helpers";
 import { computed, ref } from "vue";
 import ContentRemover from "src/components/Admin/ContentRemover.vue";
 import { useUserStore } from "src/stores/user-store";
+import { peopleTitles } from "src/plugins/constants";
 
 const columns = [
   {
@@ -157,20 +177,7 @@ const columns = [
     field: "name",
     sortable: true,
     align: "left",
-  },
-  {
-    name: "email",
-    label: "Email",
-    field: "email",
-    sortable: true,
-    align: "left",
-  },
-  {
-    name: "phone",
-    label: "Phone",
-    field: "phone",
-    sortable: true,
-    align: "left",
+    classes: "q-pa-none important",
   },
   {
     name: "type",

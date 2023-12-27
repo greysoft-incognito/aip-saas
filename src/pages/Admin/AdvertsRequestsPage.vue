@@ -3,6 +3,7 @@
     <q-card class="q-mt-sm no-shadow" bordered>
       <TitleSection
         separator
+        class="q-pa-none"
         icon="fas fa-rectangle-ad"
         title="Advert Requests"
       >
@@ -56,6 +57,7 @@
             <q-td :props="props" class="text-left q-gutter-xs">
               <q-btn
                 rounded
+                size="sm"
                 color="green"
                 label="Approve"
                 :loading="requesting"
@@ -64,6 +66,7 @@
               />
               <q-btn
                 rounded
+                size="sm"
                 color="red"
                 label="Reject"
                 :loading="requesting"
@@ -72,12 +75,14 @@
               />
               <q-btn
                 round
+                size="sm"
                 color="primary"
                 icon="preview"
                 @click="preview(props.row)"
               />
               <ContentRemover
                 round
+                size="sm"
                 base-url="admin/advert/requests"
                 confirmation="Deleting this request will also remove any associated advert, do you want to continue?"
                 :id="props.value"

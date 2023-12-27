@@ -3,6 +3,7 @@
     <q-card class="q-mt-sm no-shadow" bordered>
       <TitleSection
         separator
+        class="q-pa-none"
         icon="fas fa-rectangle-ad"
         title="Advert Requests"
       >
@@ -56,6 +57,7 @@
             <q-td :props="props" class="text-left q-gutter-xs">
               <q-btn
                 rounded
+                size="sm"
                 color="green"
                 label="Request"
                 :loading="requesting"
@@ -64,12 +66,14 @@
               />
               <q-btn
                 rounded
+                size="sm"
                 color="primary"
                 label="Edit"
                 @click="$refs.createAdRef.open(props.row)"
               />
               <ContentRemover
                 round
+                size="sm"
                 base-url="account/advert/requests"
                 :id="props.value"
                 :list="slides"

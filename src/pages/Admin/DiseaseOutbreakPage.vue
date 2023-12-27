@@ -3,6 +3,7 @@
     <q-card class="q-mt-sm no-shadow" bordered>
       <TitleSection
         separator
+        class="q-pa-none"
         icon="coronavirus"
         title="Disease Outbreaks Management"
       >
@@ -56,12 +57,14 @@
             <q-td :props="props" class="text-left">
               <q-btn
                 rounded
+                size="sm"
                 color="primary"
                 label="Edit"
                 @click="$refs.createDiseaseOutbreakRef.open(props.row)"
               />
               <ContentRemover
                 round
+                size="sm"
                 class="q-ml-sm"
                 base-url="admin/disease/outbreaks"
                 :id="props.value"

@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-card class="q-mt-sm no-shadow" bordered>
-      <TitleSection separator title="Marketplace Management">
+      <TitleSection separator class="q-py-none" title="Marketplace Management">
         <template #button>
           <q-btn
             label="Create New"
@@ -83,26 +83,6 @@
           v-model:pagination="pagination"
           @request="onRequest"
         >
-          <template v-slot:body-cell-name="props">
-            <q-td :props="props">
-              <q-item class="q-pl-none">
-                <q-item-section avatar>
-                  <q-avatar rounded>
-                    <img :src="props.row.image_url" />
-                  </q-avatar>
-                </q-item-section>
-
-                <q-item-section>
-                  <q-item-label class="text-weight-bold">
-                    {{ props.row.product_name }}
-                  </q-item-label>
-                  <q-item-label caption class="">
-                    {{ helpers.trunc(props.row.address, 30) }}
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-td>
-          </template>
           <template v-slot:body-cell-quantity="props">
             <q-td :props="props" class="text-left">
               {{ props.row["quantity" + quantity_unit] }}
@@ -122,12 +102,14 @@
             <q-td :props="props" class="text-left">
               <q-btn
                 rounded
+                size="sm"
                 color="primary"
                 label="Edit"
                 @click="$refs.createMarketItemRef.open(props.row)"
               />
               <ContentRemover
                 round
+                size="sm"
                 class="q-ml-sm"
                 base-url="marketplace"
                 :id="props.value"
@@ -181,7 +163,7 @@ const sales_column = [
   {
     name: "address",
     label: "Location",
-    field: (e) => helpers.trunc(e.address, 30),
+    field: (e) => helpers.trunc(e.address, 50),
     sortable: true,
     align: "left",
   },
@@ -287,5 +269,5 @@ const onRequest = (props) => {
 
 <style lang="sass" scoped>
 .custom-toggle
-  border: 1px solid #027be3
+  border: 1px solid $primary
 </style>

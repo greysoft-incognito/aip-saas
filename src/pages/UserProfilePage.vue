@@ -16,7 +16,14 @@
         <q-item-label class="justify-center flex">
           <q-icon name="work" color="grey-8" class="q-mr-xs" />
           <span class="text-capitalize">
-            {{ user.type }}
+            {{ helpers.singularize(peopleTitles[user.type]) }}
+          </span>
+        </q-item-label>
+        <q-separator vertical />
+        <q-item-label class="justify-center flex">
+          <q-icon name="fas fa-layer-group" color="grey-8" class="q-mr-xs" />
+          <span class="text-capitalize">
+            {{ helpers.singularize(peopleTitles[user.group]) }}
           </span>
         </q-item-label>
         <q-separator vertical />
@@ -112,6 +119,7 @@ import { usePagination } from "@alova/scene-vue";
 import { alova, useRequest } from "src/boot/alova";
 import helpers from "src/plugins/helpers";
 import { useRoute } from "vue-router";
+import { peopleTitles } from "src/plugins/constants";
 
 const route = useRoute();
 

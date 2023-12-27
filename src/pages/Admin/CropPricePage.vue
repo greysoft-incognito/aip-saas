@@ -3,6 +3,7 @@
     <q-card class="q-mt-sm no-shadow" bordered>
       <TitleSection
         separator
+        class="q-pa-none"
         icon="fa-solid fa-wheat-awn"
         title="Pricing Management"
       >
@@ -91,12 +92,14 @@
             <q-td :props="props" class="text-left">
               <q-btn
                 rounded
+                size="sm"
                 color="primary"
                 label="Edit"
                 @click="$refs.createCropRef.open(props.row)"
               />
               <ContentRemover
                 round
+                size="sm"
                 class="q-ml-sm"
                 base-url="admin/prices"
                 :id="props.value"
@@ -270,5 +273,5 @@ const onRequest = (props) => {
 
 <style lang="sass" scoped>
 .custom-toggle
-  border: 1px solid #027be3
+  border: 1px solid $primary
 </style>

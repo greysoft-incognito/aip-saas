@@ -13,6 +13,17 @@ const routes = [
         component: () => import('pages/User/DashboardPage.vue')
       },
       {
+        path: '/people/:group?', name: 'people',
+        meta: { prefix: 'user', requireAuth: true, },
+        component: () => import('pages/User/PeopleDashboardPage.vue')
+      },
+      {
+        path: '/agronomy',
+        name: 'agronomy',
+        meta: { prefix: 'user', requireAuth: true, },
+        component: () => import('pages/AgronomyPage.vue')
+      },
+      {
         path: 'market',
         name: 'market',
         meta: { prefix: 'user', requireAuth: true, },

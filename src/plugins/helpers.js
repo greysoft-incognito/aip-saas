@@ -195,21 +195,26 @@ export default {
    */
   singularize (word) {
     if (!word) {
-      return
+      return;
     }
-    word = word.toString()
-    const lastS = word.toLowerCase().substring(word.length - 1, word.length) == 's'
-    const lastEs = word.toLowerCase().substring(word.length - 2, word.length) == 'es'
-    const lastIes = word.toLowerCase().substring(word.length - 3, word.length) == 'ies'
 
-    if (lastIes) {
-      word = word.substring(word.length - 3, -3)
-    } else if (lastEs) {
-      word = word.substring(word.length - 2, -2)
-    } else if (lastS) {
-      word = word.substring(word.length - 1, -1)
+    const lowerCaseWord = word.toString().toLowerCase();
+
+    if (lowerCaseWord.endsWith('ies')) {
+      return word.substring(0, word.length - 3);
     }
-    return word
+
+    if (lowerCaseWord.endsWith('s') ||
+      lowerCaseWord.endsWith('ves') ||
+      lowerCaseWord.endsWith('ces')) {
+      return word.substring(0, word.length - 1);
+    }
+
+    if (lowerCaseWord.endsWith('es')) {
+      return word.substring(0, word.length - 2);
+    }
+
+    return word;
   },
   /**
    *

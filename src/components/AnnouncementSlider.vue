@@ -24,6 +24,7 @@
         <q-card-actions class="card_actions" align="right">
           <q-btn label="Details" color="green" @click="open(slide)" />
           <q-btn
+            size="sm"
             icon="edit"
             label="Edit"
             color="info"
@@ -31,6 +32,7 @@
             @click="emit('edit', slide)"
           />
           <ContentRemover
+            size="sm"
             base-url="admin/announcements"
             v-if="editable"
             :id="slide.id"

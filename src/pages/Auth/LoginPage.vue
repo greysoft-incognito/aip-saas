@@ -1,28 +1,4 @@
 <template>
-  <q-header style="height: 80px" elevated class="bg-white q-pa-sm">
-    <router-link
-      to="/"
-      flat
-      no-caps
-      no-wrap
-      class="q-ml-xs row items-center logo"
-    >
-      <div
-        style="
-          width: 180px;
-          height: 50px;
-          object-fit: contain;
-          border-radius: 50%;
-        "
-        class="bg-white q-mr-sm row items-center justify-center"
-      >
-        <img
-          style="width: 170px; height: 60px; object-fit: contain"
-          src="~/assets/logobig.svg"
-        />
-      </div>
-    </router-link>
-  </q-header>
   <q-page class="flex bg-image flex-center">
     <q-card
       class="shadow-15"

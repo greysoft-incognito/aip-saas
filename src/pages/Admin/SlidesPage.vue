@@ -1,7 +1,12 @@
 <template>
   <q-page>
     <q-card class="q-mt-sm no-shadow" bordered>
-      <TitleSection separator icon="slideshow" title="Slides Management">
+      <TitleSection
+        separator
+        class="q-pa-none"
+        icon="slideshow"
+        title="Slides Management"
+      >
         <template #button>
           <q-btn
             label="Create New"
@@ -52,12 +57,14 @@
             <q-td :props="props" class="text-left">
               <q-btn
                 rounded
+                size="sm"
                 color="primary"
                 label="Edit"
                 @click="$refs.createSlideRef.open(props.row)"
               />
               <ContentRemover
                 round
+                size="sm"
                 class="q-ml-sm"
                 base-url="admin/slides"
                 :id="props.value"
@@ -112,20 +119,6 @@ const sales_column = [
     name: "line1",
     label: "Line 1",
     field: (e) => helpers.trunc(e.line1 || "", 20),
-    sortable: true,
-    align: "left",
-  },
-  {
-    name: "line2",
-    label: "Line 2",
-    field: (e) => helpers.trunc(e.line2 || "", 20),
-    sortable: true,
-    align: "left",
-  },
-  {
-    name: "line3",
-    label: "Line 3",
-    field: (e) => helpers.trunc(e.line3 || "", 20),
     sortable: true,
     align: "left",
   },

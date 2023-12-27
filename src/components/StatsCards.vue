@@ -10,6 +10,7 @@
         >
           <q-item
             class="q-pa-none"
+            :to="item.to"
             :class="[
               `bg-${item.color}-4`,
               { 'cursor-pointer hover-overlay': !!item.click },
@@ -54,7 +55,7 @@
               style="max-width: 30px"
               class="q-px-none q-mx-none text-white"
               :class="`bg-${item.color}-4`"
-              v-if="item.click || item.to"
+              v-if="(item.click || item.to) && !item.noInfo"
             >
               <q-icon
                 :name="

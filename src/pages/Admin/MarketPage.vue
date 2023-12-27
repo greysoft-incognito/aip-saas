@@ -1,7 +1,12 @@
 <template>
   <q-page>
     <q-card class="q-mt-sm no-shadow" bordered>
-      <TitleSection separator icon="store" title="Marketplace Management">
+      <TitleSection
+        separator
+        class="q-pa-none"
+        icon="store"
+        title="Marketplace Management"
+      >
         <template #button>
           <q-btn
             label="Create New"
@@ -145,12 +150,14 @@
             <q-td :props="props" class="text-left">
               <q-btn
                 round
+                size="sm"
                 color="primary"
                 label="Edit"
                 @click="$refs.createMarketItemRef.open(props.row)"
               />
               <ContentRemover
                 round
+                size="sm"
                 class="q-ml-sm"
                 base-url="admin/marketplace"
                 :id="props.value"
@@ -299,5 +306,5 @@ const onRequest = (props) => {
 </script>
 <style lang="sass" scoped>
 .custom-toggle
-  border: 1px solid #027be3
+  border: 1px solid $primary
 </style>

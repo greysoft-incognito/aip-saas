@@ -5,6 +5,15 @@ import { boot } from 'quasar/wrappers'
 import { useBootstrapStore } from '../stores/bootstrap';
 import { useUserStore } from '../stores/user-store'
 
+String.prototype.titleCase = function () {
+  return this.replace(/[_-]/g, ' ').replace(
+    /\w\S*/g,
+    function (txt) {
+      return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+    }
+  );
+}
+
 export default boot(({ app, router }) => {
   router.beforeResolve(async (to) => {
     // Load stores
