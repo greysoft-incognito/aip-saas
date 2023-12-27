@@ -110,7 +110,27 @@
               @loaded="localeData($event, 'cities')"
             />
           </div>
-          <div class="col-12">
+          <div class="col-12 col-md-6">
+            <q-select
+              filled
+              lazy-rules
+              emit-value
+              map-options
+              hide-bottom-space
+              v-model="form.group"
+              label="Profile Type"
+              :options="
+                Object.keys(peopleGroups).map((e) => ({
+                  label: helpers.singularize(peopleTitles[e]),
+                  value: e,
+                }))
+              "
+              :error="!!errors.group"
+              :error-message="errors.group"
+              @update:model-value="(e) => (form.type = userTypes[0]?.value)"
+            />
+          </div>
+          <div class="col-12 col-md-6">
             <q-select
               filled
               lazy-rules
@@ -229,6 +249,7 @@ import helpers from "src/plugins/helpers";
 import { useUserStore } from "src/stores/user-store";
 import { authValidator } from "src/plugins/processor";
 import { useQuasar } from "quasar";
+import { peopleGroups, peopleTitles } from "src/plugins/constants";
 
 const $q = useQuasar();
 const errors = computed(() => error.value?.errors || {});
@@ -237,60 +258,15 @@ const router = useRouter();
 const userStore = useUserStore();
 const hidePassword = ref(true);
 
-const userTypes = [
-  {
-    value: "farmer",
-    label: "Farmer",
-  },
-  {
-    value: "processsor",
-    label: "Processsor",
-  },
-  {
-    value: "marketer",
-    label: "Marketer",
-  },
-  {
-    value: "transporter",
-    label: "Transporter",
-  },
-  {
-    value: "offtaker",
-    label: "Offtaker",
-  },
-  {
-    value: "researcher",
-    label: "Researcher",
-  },
-  {
-    value: "herbicide",
-    label: "Herbicide Supplier/Manufacturer",
-  },
-  {
-    value: "fertiliser",
-    label: "Fertiliser Supplier/Manufacturer",
-  },
-  {
-    value: "washer",
-    label: "Washer",
-  },
-  {
-    value: "slicer",
-    label: "Slicer",
-  },
-  {
-    value: "dryer",
-    label: "Dryer",
-  },
-  {
-    value: "tractor",
-    label: "Tractor Supplier/Manufacturer",
-  },
-  {
-    value: "bagging",
-    label: "Into Bagging",
-  },
-];
+const userTypes = computed(() =>
+  (peopleGroups[form.value?.group]?.length
+    ? peopleGroups[form.value?.group]
+    : [form.value?.group]
+  ).map((e) => ({
+    value: e,
+    label: helpers.singularize(peopleTitles[e]),
+  })),
+);
 
 const locales = ref({ countries: [], states: [], cities: [] });
 const locale = ref({
@@ -326,7 +302,8 @@ const {
       country: "Nigeria",
       state: "Kaduna",
       city: "Kaduna",
-      type: userTypes[0].value,
+      type: peopleGroups.farmers.at(0),
+      group: Object.keys(peopleGroups).at(0),
     },
     initialData: {},
     store: true,

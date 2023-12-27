@@ -155,7 +155,7 @@
                   @loaded="localeData($event, 'cities')"
                 />
               </div>
-              <div class="col-6">
+              <div class="col-12 col-md-6">
                 <q-select
                   filled
                   lazy-rules
@@ -175,7 +175,7 @@
                   @update:model-value="(e) => (form.type = userTypes[0]?.value)"
                 />
               </div>
-              <div class="col-6">
+              <div class="col-12 col-md-6">
                 <q-select
                   filled
                   lazy-rules
