@@ -28,7 +28,10 @@
         <div class="full-width column items-center text-info q-gutter-sm">
           <q-icon size="2em" name="sentiment_satisfied" />
           There are no
-          {{ (title || helpers.pluralize(type)).toLowerCase() }} for now!
+          {{
+            (title || helpers.pluralize(peopleTitles[type])).toLowerCase()
+          }}
+          for now!
         </div>
       </q-card-section>
     </template>
@@ -67,6 +70,7 @@ import { alova } from "src/boot/alova";
 import helpers from "src/plugins/helpers";
 import { ref } from "vue";
 import CustomDialog from "./CustomDialog.vue";
+import { peopleTitles } from "src/plugins/constants";
 
 const props = defineProps({
   type: {

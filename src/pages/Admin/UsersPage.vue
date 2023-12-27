@@ -136,7 +136,7 @@
                 {{
                   search
                     ? `No users found for search: "${search}".`
-                    : "There are no user."
+                    : "There are no users."
                 }}
               </span>
             </div>
