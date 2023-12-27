@@ -51,7 +51,6 @@ const { data: dashboard } = useRequest(
     params: {
       user_id: user.value.id,
       group: route.params.group,
-      visible: (groups[route.params.group] || [route.params.group]).join(","),
     },
     localCache: {
       mode: "placeholder",
