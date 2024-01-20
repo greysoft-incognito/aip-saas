@@ -1,8 +1,8 @@
 {
-  "name": "ginger-ip",
+  "name": "kaduna-aip",
   "version": "0.0.1",
-  "description": "Agrolog Ginger Innovation Platfrom for Ginger Produce.",
-  "productName": "Ginger IP",
+  "description": "Agric Innovation Platform Software As a Service (Kaduna).",
+  "productName": "KadAgro IP",
   "author": "Isah Raphael <33344810+realralphg@users.noreply.github.com>",
   "private": true,
   "scripts": {
